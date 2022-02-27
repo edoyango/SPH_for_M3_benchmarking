@@ -91,7 +91,8 @@ contains
 			output_time = output_time/numprocs
 			
 			write (*,*)'================================= TIME SUMMARY ================================'
-			write (*,*)'Average Total CPU time = ', cputime
+			write (*,*)'Average Total walltime = ',
+cputime+output_time
 			write (*,*)'Average Partition time = ', t_graph
 			write (*,*)'Average Send/recv time = ', t_dist
 			write (*,*)'Average Output time =    ', output_time
@@ -161,7 +162,7 @@ contains
 		
 			write(*,*)'_______________________________________________________________________________'
 			write(*,*)'  current number of time step =', itimestep,'     current time=', real(time)
-			write(*,*)'                                                 Walltime    =', real(cputime)
+			write(*,*)'                                                 Walltime    =', real(cputime+output_time+MPI_WTIME())
 			write(*,*)'_______________________________________________________________________________'
 			write(*,9999)'ntotal_loc statistics: mean = ',mean_n(1),' stdev = ',stdev_n(1)
 			write(*,9999)'                       min  = ',min_n (1),' max   = ',max_n  (1)
